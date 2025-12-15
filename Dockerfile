@@ -7,11 +7,16 @@ RUN apt-get update && apt-get install -y cron socat curl ca-certificates
 
 RUN curl https://get.acme.sh | sh -s email=marz@gmail.com
 
-RUN mkdir -p /var/lib/marzban/ssl && ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt  --issue --standalone -d $DOMAIN \
- --key-file /var/lib/marzban/ssl/key.pem \
- --fullchain-file /var/lib/marzban/ssl/fullchain.pem
+COPY /etc/letsencrypt/live /etc/letsencrypt/live
 
-RUN chmod 600 /var/lib/marzban/ssl/key.pem
+RUN cd /etc/letsencrypt/live && ls
+
+# Создаем директорию для SSL
+RUN mkdir -p /var/lib/marzban/ssl
+
+# Копируем entrypoint скрипт
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Устанавливаем переменные окружения для Marzban
 ENV XRAY_SUBSCRIPTION_URL_PREFIX = https://$DOMAIN
