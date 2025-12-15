@@ -2,8 +2,15 @@ version: '3.8'
 
 services:
   marzban:
-    image: gozargah/marzban:latest
+    build:
+      dockerfile: Dockerfile
+      args:
+        DOMAIN: debagi4-marzban-bdf5.twc1.net
     container_name: marzban
     restart: unless-stopped
+    network_mode: host
     ports:
-      - "0.0.0.0:443:8000"
+      - "8000:8000"
+
+  # wget -O- -t 1 -T 60 --post-data "key=ef7f61f1bca4b20d6538fe499ea854edd9b8a098a7d3f527f2142a75afeb9b0c&ip=5.129.215.154" https://ipv4.myaddr.tools/update
+ # ef7f61f1bca4b20d6538fe499ea854edd9b8a098a7d3f527f2142a75afeb9b0c
