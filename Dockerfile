@@ -1,6 +1,6 @@
 FROM gozargah/marzban:latest
 
-RUN apt install cron socat
+RUN apt-get update && apt-get install -y cron socat
 
 RUN curl https://get.acme.sh | sh -s email=marz@gmail.com
 
