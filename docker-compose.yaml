@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  marzban:
+    image: gozargah/marzban:latest
+    container_name: marzban
+    restart: unless-stopped
+    networks:
+      - web
+  caddy:
+    build: ./caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - web
+
+networks:
+  web:
