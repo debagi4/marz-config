@@ -1,5 +1,5 @@
-FROM caddy:latest
+FROM caddy:2.11
 
-COPY Caddyfile /etc/caddy/Caddyfile
+COPY ./Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 443
