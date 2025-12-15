@@ -1,6 +1,9 @@
 FROM gozargah/marzban:latest
 
-RUN apt-get update && apt-get install -y cron socat
+ARG DOMAIN
+ENV DOMAIN=${DOMAIN}
+
+RUN apt-get update && apt-get install -y cron socat curl ca-certificates
 
 RUN curl https://get.acme.sh | sh -s email=marz@gmail.com
 
