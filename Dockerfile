@@ -15,3 +15,7 @@ RUN chmod 600 /var/lib/marzban/ssl/key.pem
 # Устанавливаем переменные окружения для Marzban
 ENV UVICORN_SSL_CERTFILE=/var/lib/marzban/ssl/cert.pem
 ENV UVICORN_SSL_KEYFILE=/var/lib/marzban/ssl/key.pem
+ENV UVICORN_PORT=443
+ENV UVICORN_HOST="0.0.0.0"
+
+EXPOSE 443
